@@ -11,6 +11,13 @@ keypoints:
 - "Keep raw data read only."
 - "Manipulate data in a reproducible manner"
 ---
+> ## Prerequisites
+> Installation of R and RStudio:
+> - Download R from [CRAN](https://cran.r-project.org/)
+> - Download [RStudio](https://www.rstudio.com/products/rstudio/download/)
+{: .prereq}
+
+
 ## Literate Programming
 
 This section is broken down into three sections:
@@ -70,6 +77,7 @@ Adapted from [Carson Sievert's markdown slides](http://cpsievert.github.io/slide
 - **HTML** Easy to publish and read on web.
 
 ### Markdown versus HTML code {.code-columns}
+~~~
 This is a Markdown document.
 
 ## Medium header <!-- header 2, actually -->
@@ -83,7 +91,9 @@ Code block below. Just affects formatting here.
 ```
 x <- 3 * 4
 ```
+
 I can haz equations. Inline equations, such as the average is computed as $\frac{1}{n} \sum_{i=1}^{n} x_{i}$. Or display equations like this:
+
 
 $$
 \begin{equation*}
@@ -93,6 +103,7 @@ $$
 \end{cases}
 \end{equation*}
 $$
+
 
 <!DOCTYPE html>
 <html>
@@ -120,7 +131,7 @@ body {
 
 <pre><code>x <- 3 * 4
 </code></pre>
-
+~~~
 
 ### Markdown versus rendered HTML {.code-columns}
 
@@ -134,9 +145,10 @@ It's easy to do *italics* or __make things bold__.
 
 Code block below. Just affects formatting here.
 
-```
+~~~
 x <- 3 * 4
-```
+~~~
+{: .r}
 
 I can haz equations. Inline equations, such as the average is computed as $\frac{1}{n} \sum_{i=1}^{n} x_{i}$. Or display equations like this:
 
@@ -163,44 +175,51 @@ R Markdown is rendered to Markdown {.code-columns}
 
 This is an R Markdown document.
 
-```{r}
+~~~
 x <- rnorm(1000)
 head(x)
-```
+~~~
+{: .r}
 
 `knitr` offers a lot of control over representing different types of output. We can also have inline R expressions computed on the fly. The mean $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_{i}$ of the `r length(x)` random variates we generated is `r round(mean(x), 3)`. This figure is computed on-the-fly as well. No more copy-paste, including for figures:
 
-```{r}
+~~~
 plot(density(x))
-```
+~~~
+{: .r}
 This is an R Markdown document.
 
-```{r}
+~~~
 x <- rnorm(1000)
 head(x)
-```
+~~~
+{: .r}
 
 `knitr` offers a lot of control over representing different types of output. We can also have inline R expressions computed on the fly. The mean $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_{i}$ of the `r length(x)` random variates we generated is `r round(mean(x), 3)`. This figure is computed on-the-fly as well. No more copy-paste, including for figures:
 
-```r
+~~~
 plot(density(x))
-```
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png)
+~~~
+{: .r}
+
 
 ### Ideas, code, and generated results tied together {.code-columns}
 
 This is an R Markdown document.
 
-```{r}
+~~~
 x <- rnorm(1000)
 head(x)
-```
+~~~
+{: .r}
 
 `knitr` offers a lot of control over representing different types of output. We can also have inline R expressions computed on the fly. The mean $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_{i}$ of the `r length(x)` random variates we generated is `r round(mean(x), 3)`. This figure is computed on-the-fly as well. No more copy-paste, including for figures:
 
-```{r}
+~~~
 plot(density(x))
-```
+~~~
+{: .r}
+
 
 
 This is an R Markdown document. ```{r} x <- rnorm(1000) head(x) ``` `knitr` offers a lot of control over representing different types of output. We can also have inline R expressions computed on the fly. The mean $\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_{i}$ of the `r length(x)` random variates we generated is `r round(mean(x), 3)`. No more copy-paste, including for figures: ```{r} plot(density(x)) ```
