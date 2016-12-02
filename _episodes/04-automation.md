@@ -36,7 +36,7 @@ The main goal of this lesson is to teach you some tips and tricks that will make
 You certainly don't need to adopt all of these practices at once. Start small. Maybe with only one dataset, one figure first, and later learn how to use Make, and then Travis. None of these tools are exceedingly hard to learn or to grasp, but trying to learn everything at once might feel overwhelming. However, in the process of learning these tools, you will learn skills that you will be able to translate into other components of your research. For instance, if you are interested in learning how to write a package in R, many of the advice and tools included in this lecture will greatly help you to get started. If you start using Make and Travis, you will learn some basics of UNIX and Linux which are general useful skills to have if you are interested in analyzing large datasets (e.g., set up runs on an HPC cluster).
 
 ## The issue(s)
-knitr allows you to mix code and prose, which is wonderful and very powerful, but can be difficult to manage if you don't have a good plan to get organized. The challenge with working in this reproducible framework is that you end up developing your analysis at the same time as you are writting your manuscript and refining your ideas, adjusting the aim of your paper, deciding on the data you are going to include, etc. It's therefore important that you have a modular framework in place where each section of your analysis can be self-contained so you don't depend on a linear script that will not reflect the complexity of your analysis.
+`knitr` allows you to mix code and prose, which is wonderful and very powerful, but can be difficult to manage if you don't have a good plan to get organized. The challenge with working in this reproducible framework is that you end up developing your analysis at the same time as you are writting your manuscript and refining your ideas, adjusting the aim of your paper, deciding on the data you are going to include, etc. It's therefore important that you have a modular framework in place where each section of your analysis can be self-contained so you don't depend on a linear script that will not reflect the complexity of your analysis.
 
 ## A solution
 IMAGE
@@ -78,17 +78,17 @@ If these issues break something in your analysis, you might be able to find it e
 
 If all your code is made up of functions, then you can control the input and test for the output. It is something that would be difficult if not impossible to do if all your analysis is in the form of a long script.
 
-The package [testthat](The package testthat provides a powerful and easy-to-use framework to build tests for your functions.) provides a powerful and easy-to-use framework to build tests for your functions.
+The package [`testthat`]() provides a powerful and easy-to-use framework to build tests for your functions.
 
-> ## Should you convert your manuscript into a package?
+> ## Should you make your manuscript and its functions into a package?
 >
-> If your manuscript only uses functions, that they are properly documented and that you have tests for them, not only you did most of the work needed to have a functional R package, but you could be in a better position than most R packages.
+> If your manuscript uses functions (which are properly documented and have tests) not only have you done most of the work required to have a functional R package, but you could be in a better position than many R packages.
 >
-> **Pros**: common format, allows you to leverage the infrastructure for packages (tests, all functions are properly documented), can make sure it will be fully cross-platform.
+> **Pros**: common format, allows you to leverage the infrastructure for packages (tests, all functions are properly documented), can make sure it will work across platforms.
 >
-> **Cons**: no good place for the manuscript, you have to put the data in weird spots, you may have to dissociate code for functions and code for analysis.
+> **Cons**: no good place for the manuscript text, you may have to dissociate code for functions and code for analysis.
 >
-> **Bottom line**: it really depends on your type of paper, how much code there is in it, and whether others might end up re-using it. It's not because your manuscript follows the conventions of a package that you need to submit to CRAN.
+> **Bottom line**: it really depends on your type of paper, how much code there is in it, and whether others might end up re-using it. It's not because your manuscript follows the conventions of a package that you need to submit to CRAN. If you have written functions that could be useful to the community, consider making those into a package.
 
 ## Organizing your files
 As you are writing the code for your manuscript, your life will be much easier if you spend time thinking about the organization of your files. File organization is a mix of conventions (e.g., you wouldn't want to put your data in a folder called `favorite_cat_pictures`), requirements by other tools (e.g., when we will write tests later, the package we will use expects the tests to be in a folder named `tests`), and minimizing the impact of the quirks of your project/data on the time you spent writing code. You also need to be mindful, that during the life of your project you will probably go through several iterations of data exploration, and that your analysis will generate intermediate datasets (e.g., summaries by continent/year in our case) that might be computationally expensive to recreate, and that you don't want to have to recreate everytime to build your manuscript. Additionally, it might also be useful to have the intermediate datasets, figures, and result tables, available independently from the manuscript so you can share them with your collaborators.
@@ -97,11 +97,11 @@ Thinking about these issues beforehand (and communicating about them with your c
 
 In this lesson, we are going to functionalize a knitr document that is more complex than what we have seen so far but not quite as complex as a "real" research document could look like. For this project, we will use of the following folders in our working directory:
 
-IMAGE
+IMAGE - Replace with ProjectTemplate
 - `data-raw`: the original data, you shouldn't edit or otherwise alter any of the files in this folder. In this directory, there is one file for each country. The data is already "clean" (all files have the same columns, in the same order, the data use the same unit).
-- `data-output`: intermediate datasets that will be generated by the analysis. We write them to CSV files so we could share them with collaborators. If it took a long time to generate this data files, we may want to also use them for our analysis, but for this example, they are relatively small and can be recreated every time.
-- `fig`: the folder where we can store the figures used in the manuscript. In our example, the figures are generated directly during the rendering of the Rmardown file for the manuscript, but having the figures as standalone files may facilitate getting feedback from your collaborators, or save time if you just work on tweaking its appearance without having to recompile the full manuscript.
-- `R`: our R code (the functions that will generate the intermediate datasets, the analyses, and the figures), it's often easier to keep the prose separated from the code. If you have a lot of code (and/or if the manuscript is long), it's easier to navigate.
+- `data-output`: intermediate datasets that will be generated by the analysis. We write them to `.csv` (comma eperated values) files so we could share them with collaborators. If it took a long time to generate these data files, we may want to also use them for our analysis, but for this example, they are relatively small and can be recreated every time.
+- `fig`: the folder where we can store the figures used in the manuscript. In our example, the figures are generated directly during the rendering of the `Rmardown` file for the manuscript, but having the figures as standalone files may facilitate getting feedback from your collaborators, or save time if you just work on tweaking its appearance without having to recompile the full manuscript.
+- `R`: our `R` code (the functions that will generate the intermediate datasets, the analyses, and the figures), it's often easier to keep the prose separated from the code. If you have a lot of code (and/or if the manuscript is long), it's easier to navigate.
 - `tests`: the code to test that our functions are behaving properly and that all our data is included in the analysis.
 
 WILL WANT TO REDO THE ABOVE WITH `ProjectTemplate` and integrate those changes into organization.
