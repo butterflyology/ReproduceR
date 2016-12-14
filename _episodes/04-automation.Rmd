@@ -1,5 +1,11 @@
 ---
 title: "Automation"
+author: "Me"
+date: "`r format(Sys.Date())`"
+  html_document:
+    keep_md: yes
+  md_document:
+    variant: markdown_github
 teaching: 120
 exercises: 30
 questions:
@@ -126,14 +132,14 @@ Another advantage is that your code is self contained and any variable that you 
 (65 - 32) * 5/9
 (85 - 32) * 5/9
 ```
-{: .r}
+
 Let's convert this into a `function`:
-```
+```{r Chunk_2}
 fahr_to_celsius <- function(temp) {
     (temp - 32) * 5/9
 }
 ```
-{: .r}
+
 Don't forget to re-evaluate your function, after modifying it.
 
 A little better:
